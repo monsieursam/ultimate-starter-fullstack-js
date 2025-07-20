@@ -1,5 +1,5 @@
-import * as planet from "./routers/planet";
+import * as planets from "./routers/planets";
 
 export const router = {
-	planet,
+	planets,
 };

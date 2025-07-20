@@ -4,13 +4,13 @@ import { orpcClient } from "~/lib/orpc/orpc-client";
 export const usePlanet = () => {
 	const queryClient = useQueryClient();
 
-	const query = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
+	const query = useQuery(orpcClient.planets.getAllPlanets.queryOptions());
 
 	const mutation = useMutation(
-		orpcClient.planet.createOnePlanet.mutationOptions({
+		orpcClient.planets.createOnePlanet.mutationOptions({
 			onSuccess: () => {
 				queryClient.invalidateQueries({
-					queryKey: orpcClient.planet.key(),
+					queryKey: orpcClient.planets.key(),
 				});
 			},
 		}),

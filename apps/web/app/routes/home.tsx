@@ -15,7 +15,7 @@ export function meta() {
 }
 
 export async function loader({ request }: Route.LoaderArgs) {
-	const result = await call(router.planet.getAllPlanets, {});
+	const result = await call(router.planets.getAllPlanets, {});
 
 	return result;
 }
