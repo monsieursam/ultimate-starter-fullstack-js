@@ -1,25 +1,13 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { usePlanet } from "~/hooks/usePlanet";
 import { authClient } from "~/lib/auth/auth-client";
-import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export default function DashboardView() {
 	const sessions = authClient.useSession();
-
-	console.log(sessions);
-	const { data } = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
-	console.log("Planets Data:", data);
-
-	const mutation = useMutation(
-		orpcClient.planet.createOnePlanet.mutationOptions(),
-	);
+	const { allPlanets, isPendingCreatePlanet, createPlanet, errorCreatePlanet } =
+		usePlanet();
 
 	const handleCreatePlanet = async () => {
-		try {
-			const newPlanet = await mutation.mutateAsync({ name: "New Planet" });
-			console.log("New Planet Created:", newPlanet);
-		} catch (error) {
-			console.error("Error creating planet:", error);
-		}
+		await createPlanet({ name: "New Planet" });
 	};
 
 	return (
@@ -29,22 +17,20 @@ export default function DashboardView() {
 			<h1>Your account</h1>
 			<p>{sessions.data?.user.email}</p>
 			<h1>Planet</h1>
-			{data && (
-				<ul>
-					{data.map((planet) => (
-						<li key={planet.id}>{planet.name}</li>
-					))}
-				</ul>
-			)}
+			<ul>
+				{allPlanets?.map((planet) => (
+					<li key={planet.id}>{planet.name}</li>
+				))}
+			</ul>
 
 			<button
 				type="button"
 				onClick={handleCreatePlanet}
-				disabled={mutation.isPending}
+				disabled={isPendingCreatePlanet}
 			>
-				{mutation.isPending ? "Creating..." : "Create New Planet"}
+				{isPendingCreatePlanet ? "Creating..." : "Create New Planet"}
 			</button>
-			{mutation.error && <p>Error: {mutation.error.message}</p>}
+			{errorCreatePlanet && <p>Error: {errorCreatePlanet.message}</p>}
 		</div>
 	);
 }

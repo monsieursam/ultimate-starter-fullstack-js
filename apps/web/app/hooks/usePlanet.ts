@@ -1,8 +1,10 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export const usePlanet = () => {
 	const queryClient = useQueryClient();
+
+	const query = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
 
 	const mutation = useMutation(
 		orpcClient.planet.createOnePlanet.mutationOptions({
@@ -15,7 +17,13 @@ export const usePlanet = () => {
 	);
 
 	return {
-		createPlanet: mutation.mutateAsync,
-		isPending: mutation.isPending,
+		allPlanets: query.data,
+		isLoadingAllPlanets: query.isLoading,
+		isErrorAllPlanets: query.isError,
+		errorAllPlanets: query.error,
+		createPlanet: mutation.mutate,
+		isPendingCreatePlanet: mutation.isPending,
+		isErrorCreatePlanet: mutation.isError,
+		errorCreatePlanet: mutation.error,
 	};
 };
