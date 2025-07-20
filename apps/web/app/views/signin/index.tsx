@@ -14,42 +14,24 @@ function SignInForm() {
 	const [error, setError] = useState<string | null>(null);
 	const [loading, setLoading] = useState(false);
 
-	const { data } = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
-	const serverData = useLoaderData<typeof orpcClient.planet.getAllPlanets>();
-
-	console.log("Server data:", serverData);
-	console.log("Planet data:", data);
-
 	const handleSignIn = async (e: React.FormEvent) => {
 		e.preventDefault();
 		setLoading(true);
 		setError(null);
-		try {
-			await authClient.signIn.email({
-				email,
-				password,
-				callbackURL: "/dashboard",
-			});
-		} catch (err: any) {
-			setError(err.message || "Sign in failed");
-		} finally {
-			setLoading(false);
-		}
+		await authClient.signIn.email({
+			email,
+			password,
+			callbackURL: "/dashboard",
+		});
 	};
 
 	const handleGoogleSignIn = async () => {
 		setLoading(true);
 		setError(null);
-		try {
-			await authClient.signIn.social({
-				provider: "google",
-				callbackURL: "/dashboard",
-			});
-		} catch (err: any) {
-			setError(err.message || "Google sign-in failed");
-		} finally {
-			setLoading(false);
-		}
+		await authClient.signIn.social({
+			provider: "google",
+			callbackURL: "/dashboard",
+		});
 	};
 
 	return (
