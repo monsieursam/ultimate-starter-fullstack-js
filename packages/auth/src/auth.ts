@@ -8,6 +8,7 @@ export const auth = betterAuth({
 		schema: {
 			...schema, // This should match the schema structure in your database
 		},
+		usePlural: true, // Use plural table names
 	}),
 	emailAndPassword: {
 		enabled: true,
