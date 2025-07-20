@@ -4,7 +4,7 @@ import { Link, useLoaderData } from "react-router";
 import { authClient } from "~/lib/auth/auth-client";
 import { orpcClient } from "~/lib/orpc/orpc-client";
 
-export function Welcome() {
+export function SignInView() {
 	return <SignInForm />;
 }
 

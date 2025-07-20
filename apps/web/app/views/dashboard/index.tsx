@@ -1,7 +1,11 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { authClient } from "~/lib/auth/auth-client";
 import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export default function DashboardView() {
+	const sessions = authClient.useSession();
+
+	console.log(sessions);
 	const { data } = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
 	console.log("Planets Data:", data);
 
@@ -22,6 +26,17 @@ export default function DashboardView() {
 		<div>
 			<h1>Dashboard</h1>
 			<p>Welcome to your dashboard!</p>
+			<h1>Your account</h1>
+			<p>{sessions.data?.user.email}</p>
+			<h1>Planet</h1>
+			{data && (
+				<ul>
+					{data.map((planet) => (
+						<li key={planet.id}>{planet.name}</li>
+					))}
+				</ul>
+			)}
+
 			<button
 				type="button"
 				onClick={handleCreatePlanet}

@@ -1,6 +1,7 @@
 import { call } from "@orpc/server";
 import { router } from "@repo/api";
 import { OrpcProvider } from "~/lib/orpc/orpc-provider";
+import { SignInView } from "~/views/signin";
 import type { Route } from "./+types/home";
 
 export function meta() {
@@ -18,10 +19,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 	return result;
 }
 
-export default function Home() {
+export default function SignIn() {
 	return (
 		<OrpcProvider>
-			<div>Home</div>
+			<SignInView></SignInView>
 		</OrpcProvider>
 	);
 }

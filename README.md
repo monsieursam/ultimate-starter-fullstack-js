@@ -1,127 +1,129 @@
-# Turborepo starter
+# Ultimate Starter Fullstack JS
 
-This Turborepo starter is maintained by the Turborepo core team.
+A modern, full-stack JavaScript application starter built with Turborepo, React Router, tRPC, and Drizzle ORM. This monorepo provides a complete setup for building scalable web applications with a well-structured frontend and backend.
 
-## Using this example
+## Features
 
-Run the following command:
+- **Monorepo Structure**: Managed with Turborepo for efficient build system and dependency management
+- **Frontend**: React application with React Router v7
+- **Backend**: API with tRPC/oRPC for type-safe API calls
+- **Database**: PostgreSQL with Drizzle ORM for database operations
+- **Authentication**: Built-in auth system with better-auth
+- **TypeScript**: Full TypeScript support throughout the codebase
 
-```sh
-npx create-turbo@latest
-```
+## Prerequisites
 
-## What's inside?
+- Node.js >= 20
+- npm >= 10.9.2
+- PostgreSQL database
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Project Structure
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+├── apps/
+│   └── web/                # React Router frontend application
+├── packages/
+│   ├── api/                # API layer with tRPC/oRPC
+│   ├── auth/               # Authentication package
+│   ├── database/           # Database schema and client
+│   └── typescript-config/  # Shared TypeScript configurations
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Setup Instructions
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+### 1. Clone the repository
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
+```bash
+git clone <repository-url>
+cd ultimate-starter-fullstack-js
 ```
 
-### Develop
+### 2. Install dependencies
 
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+```bash
+npm install
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+### 3. Set up environment variables
+
+Create a `.env` file in the root directory with the following variables:
 
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
 ```
 
-### Remote Caching
+Make sure to replace the values with your actual PostgreSQL connection details.
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+### 4. Set up the database
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Run the following commands to set up your database schema:
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
+```bash
+npm run database:generate  # Generate migration files
+npm run database:push      # Push schema changes to the database
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 5. Generate auth schema
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
+```bash
+npm run auth:generate
 ```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
+## Development
+
+Start the development server:
+
+```bash
+npm run dev
 ```
+
+This will start both the frontend and backend in development mode.
+
+## Available Scripts
+
+- `npm run dev` - Start all applications in development mode
+- `npm run build` - Build all applications
+- `npm run lint` - Run linting across the codebase
+- `npm run check-types` - Check TypeScript types
+- `npm run database:generate` - Generate database migration files
+- `npm run database:push` - Push schema changes to the database
+- `npm run database:migrate` - Run database migrations
+- `npm run auth:generate` - Generate authentication schema
+
+## Building for Production
+
+Build the application for production:
+
+```bash
+npm run build
+```
+
+You can then start the production server:
+
+```bash
+cd apps/web
+npm run start
+```
+
+## Docker Support
+
+The web application includes a Dockerfile for containerization. To build and run the Docker container:
+
+```bash
+cd apps/web
+docker build -t ultimate-starter-web .
+docker run -p 3000:3000 -e POSTGRES_URL=your_postgres_url ultimate-starter-web
+```
+
+## Tech Stack
+
+- **Frontend**: React, React Router
+- **Backend**: Node.js, tRPC/oRPC
+- **Database**: PostgreSQL, Drizzle ORM
+- **Build System**: Turborepo
+- **Styling**: TailwindCSS
+- **Package Manager**: npm
+- **Language**: TypeScript
 
 ## Useful Links
 
@@ -133,3 +135,7 @@ Learn more about the power of Turborepo:
 - [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
 - [Configuration Options](https://turborepo.com/docs/reference/configuration)
 - [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+
+## License
+
+MIT

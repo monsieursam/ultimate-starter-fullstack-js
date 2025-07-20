@@ -20,13 +20,13 @@
 		"typescript": "5.8.2"
 	},
 	"engines": {
-		"node": ">=18"
+		"node": ">=20"
 	},
 	"workspaces": [
 		"packages/*",
 		"apps/*"
 	],
-	"packageManager": "npm@10.8.2",
+	"packageManager": "npm@10.9.2",
 	"dependencies": {
 		"@orpc/client": "^1.6.8",
 		"@orpc/server": "^1.6.8",

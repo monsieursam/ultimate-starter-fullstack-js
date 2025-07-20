@@ -4,6 +4,7 @@ export default [
 	route("/api/auth/*", "routes/api/auth.ts"),
 	route("/api/orpc/*", "routes/api/orpc.ts"),
 
+	route("/signin", "routes/signin.tsx"),
 	route("/signup", "routes/signup.tsx"),
 	route("/dashboard", "routes/dashboard.tsx"),
 
