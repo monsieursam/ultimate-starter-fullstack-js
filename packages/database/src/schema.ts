@@ -1,5 +1,10 @@
-import * as authSchema from "./auth-schema";
+import { accounts, sessions, users, verifications } from "./auth-schema";
+
+export { accounts, sessions, users, verifications } from "./auth-schema";
 
 export const schema = {
-	...authSchema,
+	accounts,
+	sessions,
+	users,
+	verifications,
 };

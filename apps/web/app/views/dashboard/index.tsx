@@ -1,15 +1,12 @@
-import { useMutation } from "@tanstack/react-query";
-import { orpcClient } from "~/lib/orpc/client";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export default function DashboardView() {
-	// Create a new planete
+	const { data } = useQuery(orpcClient.planet.getAllPlanets.queryOptions());
+	console.log("Planets Data:", data);
 
 	const mutation = useMutation(
-		orpcClient.planet.createOnePlanet.mutationOptions({
-			onSuccess: (data) => {
-				console.log(data);
-			},
-		}),
+		orpcClient.planet.createOnePlanet.mutationOptions(),
 	);
 
 	const handleCreatePlanet = async () => {
@@ -25,7 +22,6 @@ export default function DashboardView() {
 		<div>
 			<h1>Dashboard</h1>
 			<p>Welcome to your dashboard!</p>
-			{/* Add more dashboard content here */}
 			<button
 				type="button"
 				onClick={handleCreatePlanet}

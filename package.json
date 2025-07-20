@@ -6,6 +6,7 @@
 		"dev": "turbo run dev",
 		"lint": "turbo run lint",
 		"database:push": "cd packages/database && npx drizzle-kit push",
+		"database:generate": "cd packages/database && npx drizzle-kit generate",
 		"database:migrate": "cd packages/database && npx drizzle-kit migrate",
 		"auth:generate": "cd packages/auth && npx @better-auth/cli generate --output ../database/src/auth-schema.ts",
 		"check-types": "turbo run check-types"
@@ -21,11 +22,11 @@
 	"engines": {
 		"node": ">=18"
 	},
-  "workspaces": [
-    "packages/*",
-    "apps/*"
-  ],
-  "packageManager": "npm@9.8.1",
+	"workspaces": [
+		"packages/*",
+		"apps/*"
+	],
+	"packageManager": "npm@10.8.2",
 	"dependencies": {
 		"@orpc/client": "^1.6.8",
 		"@orpc/server": "^1.6.8",
@@ -35,6 +36,8 @@
 		"@trpc/react-query": "^11.4.2",
 		"@trpc/server": "^11.4.2",
 		"better-auth": "^1.2.12",
+		"dotenv": "^17.2.0",
+		"drizzle-kit": "^0.31.4",
 		"drizzle-orm": "^0.44.2",
 		"pg": "^8.16.2",
 		"react": "19.0.0",

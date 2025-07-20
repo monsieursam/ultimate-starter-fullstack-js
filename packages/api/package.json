@@ -11,10 +11,8 @@
 	"dependencies": {
 		"@repo/auth": "*",
 		"@repo/database": "*"
-
 	},
 	"devDependencies": {
-		"@repo/typescript-config": "*",
-		"typescript": "^5.3.3"
+		"@repo/typescript-config": "*"
 	}
 }

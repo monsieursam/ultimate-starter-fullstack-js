@@ -1,5 +1,5 @@
 import { auth } from "@repo/auth";
-import type { LoaderFunctionArgs } from "react-router";
+import { type LoaderFunctionArgs, redirect } from "react-router";
 import { OrpcProvider } from "~/lib/orpc/orpc-provider";
 import DashboardView from "~/views/dashboard";
 
@@ -11,7 +11,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const user = authSession?.user || null;
 
 	if (!user) {
-		throw new Response("Unauthorized", { status: 401 });
+		redirect("/");
 	}
 
 	return { user };
