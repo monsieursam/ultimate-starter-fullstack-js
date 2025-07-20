@@ -12,6 +12,6 @@ export const authMiddleware = async ({
 	const user = authSession?.user || null;
 
 	if (!user) {
-		throw redirect("/login");
+		throw redirect("/signin");
 	}
 };
