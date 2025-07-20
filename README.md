@@ -1,12 +1,12 @@
 # Ultimate Starter Fullstack JS
 
-A modern, full-stack JavaScript application starter built with Turborepo, React Router, tRPC, and Drizzle ORM. This monorepo provides a complete setup for building scalable web applications with a well-structured frontend and backend.
+A modern, full-stack JavaScript application starter built with Turborepo, React Router, oRPC, and Drizzle ORM. This monorepo provides a complete setup for building scalable web applications with a well-structured frontend and backend.
 
 ## Features
 
 - **Monorepo Structure**: Managed with Turborepo for efficient build system and dependency management
 - **Frontend**: React application with React Router v7
-- **Backend**: API with tRPC/oRPC for type-safe API calls
+- **Backend**: API with oRPC for type-safe API calls
 - **Database**: PostgreSQL with Drizzle ORM for database operations
 - **Authentication**: Built-in auth system with better-auth
 - **TypeScript**: Full TypeScript support throughout the codebase
@@ -23,7 +23,7 @@ A modern, full-stack JavaScript application starter built with Turborepo, React 
 ├── apps/
 │   └── web/                # React Router frontend application
 ├── packages/
-│   ├── api/                # API layer with tRPC/oRPC
+│   ├── api/                # API layer with oRPC
 │   ├── auth/               # Authentication package
 │   ├── database/           # Database schema and client
 │   └── typescript-config/  # Shared TypeScript configurations
@@ -118,7 +118,7 @@ docker run -p 3000:3000 -e POSTGRES_URL=your_postgres_url ultimate-starter-web
 ## Tech Stack
 
 - **Frontend**: React, React Router
-- **Backend**: Node.js, tRPC/oRPC
+- **Backend**: Node.js, oRPC
 - **Database**: PostgreSQL, Drizzle ORM
 - **Build System**: Turborepo
 - **Styling**: TailwindCSS
