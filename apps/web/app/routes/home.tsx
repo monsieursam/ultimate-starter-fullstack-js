@@ -1,6 +1,5 @@
 import { call } from "@orpc/server";
 import { router } from "@repo/api";
-import { Link, useLoaderData } from "react-router";
 import { OrpcProvider } from "~/lib/orpc/orpc-provider";
 import { HomeView } from "~/views/home";
 import type { Route } from "./+types/home";

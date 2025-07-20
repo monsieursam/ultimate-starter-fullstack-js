@@ -53,7 +53,7 @@ export const HomeView = () => {
 					</div>
 					<div>
 						<h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
-							List of planet
+							List of planet using oRPC and Drizzle
 						</h2>
 						<div>
 							{result?.map((planet) => (

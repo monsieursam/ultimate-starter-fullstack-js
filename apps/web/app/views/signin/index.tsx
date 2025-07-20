@@ -1,8 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import { authClient } from "~/lib/auth/auth-client";
-import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export function SignInView() {
 	return <SignInForm />;
