@@ -1,10 +1,13 @@
 import { os } from "@orpc/server";
+import { db, schema } from "@repo/database";
 import z from "zod";
 import { authMiddleware } from "../middleware";
 
+const { planets } = schema;
+
 export const getAllPlanets = os.handler(async () => {
-	// your list code here
-	return [{ id: 1, name: "Terre" }];
+	// return a list of planets
+	return db.query.planets.findMany();
 });
 
 // create a new planet only for authenticated users
@@ -12,6 +15,8 @@ export const createOnePlanet = os
 	.use(authMiddleware)
 	.input(z.object({ name: z.string().min(1) }))
 	.handler(async ({ input }) => {
-		// your create code here
-		return { id: 2, name: input.name };
+		// create a new planet
+		return db.insert(planets).values({
+			name: input.name,
+		});
 	});

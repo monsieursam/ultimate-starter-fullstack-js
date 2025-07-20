@@ -1,6 +1,6 @@
 import { call } from "@orpc/server";
 import { router } from "@repo/api";
-import { Link } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { OrpcProvider } from "~/lib/orpc/orpc-provider";
 import type { Route } from "./+types/home";
 
@@ -23,6 +23,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export default function Home() {
+	const result = useLoaderData<typeof loader>();
+
 	return (
 		<OrpcProvider>
 			<div className="min-h-screen flex flex-col">
@@ -69,6 +71,18 @@ export default function Home() {
 								>
 									Get Started
 								</Link>
+							</div>
+						</div>
+						<div>
+							<h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+								List of planet
+							</h2>
+							<div>
+								{result?.map((planet) => (
+									<div key={planet.id} className="mb-2">
+										{planet.name}
+									</div>
+								))}
 							</div>
 						</div>
 					</div>

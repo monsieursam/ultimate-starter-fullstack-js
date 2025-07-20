@@ -37,6 +37,7 @@
 		"@trpc/server": "^11.4.2",
 		"better-auth": "^1.2.12",
 		"dotenv": "^17.2.0",
+		"drizzle-kit": "^0.31.4",
 		"drizzle-orm": "^0.44.2",
 		"pg": "^8.16.2",
 		"react": "19.0.0",
