@@ -22,5 +22,9 @@ export const authMiddleware = async ({
 		throw redirect("/signin");
 	}
 
-	context.set(userContext, user);
+	const contextMap = new Map();
+
+	contextMap.set(userContext, user);
+
+	return contextMap;
 };
