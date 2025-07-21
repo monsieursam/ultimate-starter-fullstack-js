@@ -3,7 +3,6 @@ import { authClient } from "~/lib/auth/auth-client";
 
 export default function DashboardView() {
 	const session = authClient.useSession();
-	console.log(session);
 	const { allPlanets, createPlanet, isPendingCreatePlanet } = usePlanet();
 
 	return (

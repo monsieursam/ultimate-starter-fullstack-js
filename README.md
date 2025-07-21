@@ -46,13 +46,23 @@ npm install
 
 ### 3. Set up environment variables
 
-Create a `.env` file in the root directory with the following variables:
+You'll need to set up environment variables for both the web application and the database package.
 
+#### Web Application (.env in apps/web/)
 ```
-POSTGRES_URL=postgresql://username:password@localhost:5432/database_name
+POSTGRES_URL=postgres://postgres:postgres@localhost:5432/
+APP_URL=http://localhost:5173
 ```
 
-Make sure to replace the values with your actual PostgreSQL connection details.
+#### Database Package (.env in packages/database/)
+```
+POSTGRES_URL=postgres://postgres:postgres@localhost:5432/
+```
+
+Make sure to:
+1. Create `.env` files in both directories
+2. Replace the values with your actual PostgreSQL connection details
+3. Adjust the APP_URL if you're using a different port for development
 
 ### 4. Set up the database
 
