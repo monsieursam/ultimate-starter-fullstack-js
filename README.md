@@ -1,4 +1,4 @@
-# Ultimate Starter Fullstack JS
+# FROD Stack, Fullstack React Router + oRPC + Drizzle
 
 A modern, full-stack JavaScript application starter built with Turborepo, React Router, oRPC, and Drizzle ORM. This monorepo provides a complete setup for building scalable web applications with a well-structured frontend and backend.
 
