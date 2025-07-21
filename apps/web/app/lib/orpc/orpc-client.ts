@@ -5,7 +5,7 @@ import { createTanstackQueryUtils } from "@orpc/tanstack-query";
 import type { router } from "@repo/api";
 
 const link = new RPCLink({
-	url: "http://localhost:5173/api/orpc",
+	url: `${import.meta.env.VITE_APP_URL}/api/orpc`,
 });
 
 // Create a client for your router
