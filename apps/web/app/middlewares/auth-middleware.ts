@@ -1,7 +1,17 @@
 import { auth } from "@repo/auth";
-import { type LoaderFunctionArgs, redirect } from "react-router";
+import type { User } from "better-auth";
+import {
+	redirect,
+	unstable_createContext,
+	type unstable_MiddlewareFunction,
+} from "react-router";
 
-export const authMiddleware = async ({ request }: LoaderFunctionArgs) => {
+export const userContext = unstable_createContext<User | null>(null);
+
+export const authMiddleware: unstable_MiddlewareFunction = async ({
+	request,
+	context,
+}) => {
 	const authSession = await auth.api.getSession({
 		headers: request.headers,
 	});
@@ -12,5 +22,5 @@ export const authMiddleware = async ({ request }: LoaderFunctionArgs) => {
 		throw redirect("/signin");
 	}
 
-	return user;
+	context.set(userContext, user);
 };
