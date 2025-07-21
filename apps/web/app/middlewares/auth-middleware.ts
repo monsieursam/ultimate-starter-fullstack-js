@@ -1,5 +1,12 @@
 import { auth } from "@repo/auth";
-import { type LoaderFunctionArgs, redirect } from "react-router";
+import type { User } from "better-auth";
+import {
+	type LoaderFunctionArgs,
+	redirect,
+	unstable_createContext,
+} from "react-router";
+
+const userContext = unstable_createContext<User>();
 
 export const authMiddleware = async ({
 	request,
@@ -14,4 +21,6 @@ export const authMiddleware = async ({
 	if (!user) {
 		throw redirect("/signin");
 	}
+
+	context.set(userContext, user);
 };
