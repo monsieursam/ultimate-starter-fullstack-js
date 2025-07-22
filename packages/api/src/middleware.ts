@@ -1,8 +1,6 @@
 import { ORPCError } from "@orpc/client";
 import { os } from "@orpc/server";
 import { auth } from "@repo/auth";
-import { db } from "@repo/database";
-import type { User } from "better-auth";
 
 export const authMiddleware = os
 	.$context<{ headers?: Headers }>() // <-- define dependent-context
