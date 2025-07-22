@@ -6,6 +6,7 @@ A modern, full-stack JavaScript application starter built with Turborepo, React 
 
 - **Monorepo Structure**: Managed with Turborepo for efficient build system and dependency management
 - **Frontend**: React application with React Router v7
+- **Mobile**: React Native application with Expo Router
 - **Backend**: API with oRPC for type-safe API calls
 - **Database**: PostgreSQL with Drizzle ORM for database operations
 - **Authentication**: Built-in auth system with better-auth
@@ -21,7 +22,8 @@ A modern, full-stack JavaScript application starter built with Turborepo, React 
 
 ```
 ├── apps/
-│   └── web/                # React Router frontend application
+│   ├── web/                # React Router frontend application
+│   └── mobile/             # React Native mobile application with Expo
 ├── packages/
 │   ├── api/                # API layer with oRPC
 │   ├── auth/               # Authentication package
@@ -46,12 +48,17 @@ npm install
 
 ### 3. Set up environment variables
 
-You'll need to set up environment variables for both the web application and the database package.
+You'll need to set up environment variables for the web application, mobile application, and the database package.
 
 #### Web Application (.env in apps/web/)
 ```
 POSTGRES_URL=postgres://postgres:postgres@localhost:5432/
 APP_URL=http://localhost:5173
+```
+
+#### Mobile Application (.env in apps/mobile/)
+```
+EXPO_PUBLIC_API_URL=http://localhost:5173
 ```
 
 #### Database Package (.env in packages/database/)
@@ -60,9 +67,9 @@ POSTGRES_URL=postgres://postgres:postgres@localhost:5432/
 ```
 
 Make sure to:
-1. Create `.env` files in both directories
+1. Create `.env` files in all three directories
 2. Replace the values with your actual PostgreSQL connection details
-3. Adjust the APP_URL if you're using a different port for development
+3. Adjust the APP_URL and EXPO_PUBLIC_API_URL if you're using different ports for development
 
 ### 4. Set up the database
 
