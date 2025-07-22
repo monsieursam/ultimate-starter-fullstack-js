@@ -1,7 +1,12 @@
 import { pgTable, text, uuid } from "drizzle-orm/pg-core";
 import { accounts, sessions, users, verifications } from "./auth-schema";
 
-export { accounts, sessions, users, verifications } from "./auth-schema";
+export {
+	accounts,
+	sessions,
+	users,
+	verifications,
+} from "./auth-schema";
 
 export const planets = pgTable("planets", {
 	id: uuid("id").defaultRandom().primaryKey(),
@@ -16,3 +21,5 @@ export const schema = {
 
 	planets,
 };
+
+export type User = typeof users.$inferSelect;

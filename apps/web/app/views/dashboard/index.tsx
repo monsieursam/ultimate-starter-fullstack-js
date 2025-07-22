@@ -1,5 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState } from "react";
 import { usePlanet } from "~/hooks/usePlanet";
 import { authClient } from "~/lib/auth/auth-client";
+import { orpcClient } from "~/lib/orpc/orpc-client";
 
 export default function DashboardView() {
 	const session = authClient.useSession();
@@ -30,6 +33,16 @@ export default function DashboardView() {
 						</li>
 					))}
 				</ul>
+			</div>
+			<div>
+				<button
+					type="button"
+					onClick={async () => {
+						await authClient.signOut();
+					}}
+				>
+					Disconnect
+				</button>
 			</div>
 		</div>
 	);
