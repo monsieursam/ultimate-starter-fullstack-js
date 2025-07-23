@@ -1,0 +1,15 @@
+{
+  "expo": {
+    "extra": {
+      "eas": {
+        "projectId": "71ca80a3-17a0-4d1d-bb66-7bb742d01a17"
+      }
+    },
+    "ios": {
+      "bundleIdentifier": "com.monsieursam.erod",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    }
+  }
+}

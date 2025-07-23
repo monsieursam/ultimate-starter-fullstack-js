@@ -1,5 +1,4 @@
 import { Redirect, Tabs } from "expo-router";
-import React from "react";
 import { Platform } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
@@ -34,7 +33,7 @@ export default function DashboardLayout() {
 			}}
 		>
 			<Tabs.Screen
-				name="index"
+				name="Home"
 				options={{
 					title: "Home",
 					tabBarIcon: ({ color }) => (

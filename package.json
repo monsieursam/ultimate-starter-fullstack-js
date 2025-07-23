@@ -10,7 +10,12 @@
 		"database:migrate": "cd packages/database && npx drizzle-kit migrate",
 		"auth:generate": "cd packages/auth && npx @better-auth/cli generate --output ../database/src/auth-schema.ts",
 		"auth:migrate": "cd packages/auth && npx @better-auth/cli migrate",
-		"check-types": "turbo run check-types"
+		"check-types": "turbo run check-types",
+		"android": "expo run:android",
+		"start:expo": "cd apps/mobile && npx expo start --tunnel",
+		"build:expo": "cd apps/mobile && npx eas build",
+		"build:expo-ios": "cd apps/mobile && npx eas build --platform ios --profile development",
+		"ios": "expo run:ios"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.2",
@@ -28,7 +33,6 @@
 		"packages/*",
 		"apps/*"
 	],
-	"packageManager": "npm@10.9.2",
 	"dependencies": {
 		"@better-auth/expo": "^1.3.2",
 		"@orpc/client": "^1.6.8",
@@ -45,7 +49,9 @@
 		"pg": "^8.16.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
-		"stripe": "^18.3.0",
-		"zod": "^3.25.67"
-	}
+		"zod": "^3.25.67",
+		"expo": "~53.0.20",
+		"react-native": "0.79.5"
+	},
+	"version": "1.0.0"
 }
