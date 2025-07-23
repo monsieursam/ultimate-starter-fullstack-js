@@ -12,8 +12,10 @@
 		"check-types": "turbo run check-types",
 		"android": "expo run:android",
 		"start:expo": "cd apps/mobile && npx expo start --tunnel",
+		"start:ios": "cd apps/mobile && npx expo run:ios --device",
 		"start:web": "cd apps/web && npm run dev",
 		"build:expo": "cd apps/mobile && npx eas build",
+		"prebuild:expo": "cd apps/mobile && npx expo prebuild",
 		"build:expo-ios": "cd apps/mobile && npx eas build --platform ios --profile development",
 		"submit:ios": "cd apps/mobile && npx eas submit --platform ios",
 		"ios": "expo run:ios"
@@ -52,5 +54,6 @@
 		"react-dom": "19.0.0",
 		"zod": "^3.25.67"
 	},
+	"packageManager": "npm@11.4.2",
 	"version": "1.0.0"
 }
