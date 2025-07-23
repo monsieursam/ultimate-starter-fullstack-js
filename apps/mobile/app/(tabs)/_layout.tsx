@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { Redirect, Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
 
@@ -7,9 +7,15 @@ import { IconSymbol } from "@/components/ui/IconSymbol";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { authClient } from "@/lib/auth/auth-client";
 
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
+	const { data: session, isPending } = authClient.useSession();
+
+	if (!session && !isPending) {
+		return <Redirect href={"/(dashboard)"} />;
+	}
 
 	return (
 		<Tabs

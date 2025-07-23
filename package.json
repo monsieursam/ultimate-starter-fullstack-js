@@ -13,6 +13,7 @@
 		"check-types": "turbo run check-types",
 		"android": "expo run:android",
 		"start:expo": "cd apps/mobile && npx expo start --tunnel",
+		"start:web": "cd apps/web && npm run dev",
 		"build:expo": "cd apps/mobile && npx eas build",
 		"build:expo-ios": "cd apps/mobile && npx eas build --platform ios --profile development",
 		"ios": "expo run:ios"
