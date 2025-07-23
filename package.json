@@ -9,13 +9,13 @@
 		"database:generate": "cd packages/database && npx drizzle-kit generate",
 		"database:migrate": "cd packages/database && npx drizzle-kit migrate",
 		"auth:generate": "cd packages/auth && npx @better-auth/cli generate --output ../database/src/auth-schema.ts",
-		"auth:migrate": "cd packages/auth && npx @better-auth/cli migrate",
 		"check-types": "turbo run check-types",
 		"android": "expo run:android",
 		"start:expo": "cd apps/mobile && npx expo start --tunnel",
 		"start:web": "cd apps/web && npm run dev",
 		"build:expo": "cd apps/mobile && npx eas build",
 		"build:expo-ios": "cd apps/mobile && npx eas build --platform ios --profile development",
+		"submit:ios": "cd apps/mobile && npx eas submit --platform ios",
 		"ios": "expo run:ios"
 	},
 	"devDependencies": {
@@ -50,9 +50,7 @@
 		"pg": "^8.16.2",
 		"react": "19.0.0",
 		"react-dom": "19.0.0",
-		"zod": "^3.25.67",
-		"expo": "~53.0.20",
-		"react-native": "0.79.5"
+		"zod": "^3.25.67"
 	},
 	"version": "1.0.0"
 }

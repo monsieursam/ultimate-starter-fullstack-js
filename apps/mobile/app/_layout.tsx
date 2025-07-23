@@ -27,6 +27,7 @@ export default function RootLayout() {
 			<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 				<Stack>
 					<Stack.Screen name="(intro)" options={{ headerShown: false }} />
+					<Stack.Screen name="(dashboard)" options={{ headerShown: false }} />rz
 					<Stack.Screen name="+not-found" />
 				</Stack>
 				<StatusBar style="auto" />

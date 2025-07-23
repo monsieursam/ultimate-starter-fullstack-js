@@ -12,6 +12,7 @@ import {
 	TouchableOpacity,
 	View,
 } from "react-native";
+import { SvgXml } from "react-native-svg";
 import { authClient } from "@/lib/auth/auth-client";
 
 const { width } = Dimensions.get("window");
@@ -42,9 +43,6 @@ export default async function SignInScreen() {
 				],
 			});
 
-			// Here you would typically send the credential to your backend
-			console.log("Apple Sign-In successful:", credential);
-
 			// Save authentication state
 			await authClient.signIn.social({
 				provider: "apple",
@@ -71,6 +69,19 @@ export default async function SignInScreen() {
 			style={styles.container}
 		>
 			<View style={styles.content}>
+				<View style={styles.illustrationContainer}>
+					<SvgXml
+						xml={`
+							<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<circle cx="100" cy="70" r="40" stroke="#4A90E2" stroke-width="4"/>
+								<path d="M50 160C50 126.863 72.3858 100 100 100C127.614 100 150 126.863 150 160" stroke="#4A90E2" stroke-width="4"/>
+								<path d="M80 65L95 80L120 50" stroke="#4A90E2" stroke-width="4"/>
+							</svg>
+						`}
+						width={200}
+						height={200}
+					/>
+				</View>
 				<Text style={styles.title}>Welcome</Text>
 				<Text style={styles.subtitle}>
 					Sign in to continue creating amazing AI-generated images
@@ -120,6 +131,10 @@ export default async function SignInScreen() {
 }
 
 const styles = StyleSheet.create({
+	illustrationContainer: {
+		alignItems: "center",
+		marginBottom: 30,
+	},
 	container: {
 		flex: 1,
 		backgroundColor: "#fff",

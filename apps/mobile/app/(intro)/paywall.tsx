@@ -1,15 +1,8 @@
-import { Redirect, Stack } from "expo-router";
+import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { View } from "react-native";
-import { authClient } from "@/lib/auth/auth-client";
 
-export default function DashboardLayout() {
-	const { data, isPending } = authClient.useSession();
-
-	if (!data && !isPending) {
-		return <Redirect href="/(intro)" />;
-	}
-
+export default function Paywall() {
 	return (
 		<View style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
 			<StatusBar style="dark" />

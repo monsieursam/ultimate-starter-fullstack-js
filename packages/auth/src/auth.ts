@@ -5,7 +5,7 @@ import { drizzleAdapter } from "better-auth/adapters/drizzle";
 
 export const auth: ReturnType<typeof betterAuth> = betterAuth({
 	plugins: [expo()],
-	trustedOrigins: ["mobile://"],
+	trustedOrigins: ["imagegenerator3000://", "https://appleid.apple.com"],
 	database: drizzleAdapter(db, {
 		provider: "pg", // or "pg" or "mysql"
 		usePlural: true, // Use plural table names
@@ -13,6 +13,14 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
 	}),
 	emailAndPassword: {
 		enabled: true,
+	},
+	socialProviders: {
+		apple: {
+			clientId: process.env.APPLE_CLIENT_ID as string,
+			clientSecret: process.env.APPLE_CLIENT_SECRET as string,
+			// Optional
+			appBundleIdentifier: process.env.APPLE_APP_BUNDLE_IDENTIFIER as string,
+		},
 	},
 	user: {
 		additionalFields: {

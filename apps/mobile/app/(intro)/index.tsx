@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import React, { useRef, useState } from 'react';
 import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 const { width, height } = Dimensions.get('window');
 
@@ -10,18 +11,34 @@ const slides = [
     title: 'AI-Powered Image Generation',
     description: 'Create stunning images with the power of artificial intelligence',
     backgroundColor: '#4A90E2',
+    illustration: `<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="40" y="40" width="120" height="120" rx="8" stroke="white" stroke-width="4"/>
+      <circle cx="100" cy="100" r="30" stroke="white" stroke-width="4"/>
+      <path d="M70 70L130 130M130 70L70 130" stroke="white" stroke-width="4"/>
+    </svg>`,
   },
   {
     id: 2,
     title: 'Edit & Customize',
     description: 'Fine-tune and personalize your generated images with advanced editing tools',
     backgroundColor: '#50C878',
+    illustration: `<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="50" stroke="white" stroke-width="4"/>
+      <path d="M80 100L95 115L120 85" stroke="white" stroke-width="4"/>
+      <path d="M150 50L170 70M170 50L150 70" stroke="white" stroke-width="4"/>
+    </svg>`,
   },
   {
     id: 3,
     title: 'Join Our Community',
     description: 'Sign in to save your creations and connect with other creators',
     backgroundColor: '#9B59B6',
+    illustration: `<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="80" r="30" stroke="white" stroke-width="4"/>
+      <path d="M60 140C60 118.67 77.67 100 100 100C122.33 100 140 118.67 140 140" stroke="white" stroke-width="4"/>
+      <circle cx="60" cy="90" r="20" stroke="white" stroke-width="4"/>
+      <circle cx="140" cy="90" r="20" stroke="white" stroke-width="4"/>
+    </svg>`,
   },
 ];
 
@@ -78,6 +95,9 @@ export default function IntroScreen() {
             style={[styles.slide, { backgroundColor: item.backgroundColor }]}
           >
             <View style={styles.content}>
+              <View style={styles.illustrationContainer}>
+                <SvgXml xml={item.illustration} width={200} height={200} />
+              </View>
               <Text style={styles.title}>{item.title}</Text>
               <Text style={styles.description}>{item.description}</Text>
             </View>
@@ -100,6 +120,10 @@ export default function IntroScreen() {
 }
 
 const styles = StyleSheet.create({
+  illustrationContainer: {
+    marginBottom: 40,
+    alignItems: 'center',
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
