@@ -17,7 +17,7 @@ import { authClient } from "@/lib/auth/auth-client";
 
 const { width } = Dimensions.get("window");
 
-export default async function SignInScreen() {
+export default function SignInScreen() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -52,7 +52,7 @@ export default async function SignInScreen() {
 			});
 
 			// Navigate to the main app
-			router.replace("/(dashboard)");
+			router.replace("/paywall");
 		} catch (error: any) {
 			if (error.code === "ERR_CANCELED") {
 				// User canceled the sign-in flow

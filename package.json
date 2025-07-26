@@ -11,7 +11,7 @@
 		"auth:generate": "cd packages/auth && npx @better-auth/cli generate --output ../database/src/auth-schema.ts",
 		"check-types": "turbo run check-types",
 		"android": "expo run:android",
-		"start:expo": "cd apps/mobile && npx expo start --tunnel",
+		"start:expo": "cd apps/mobile && npx expo start --tunnel -c",
 		"start:ios": "cd apps/mobile && npx expo run:ios --device",
 		"start:web": "cd apps/web && npm run dev",
 		"build:expo": "cd apps/mobile && npx eas build",

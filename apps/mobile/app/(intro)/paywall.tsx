@@ -1,25 +1,88 @@
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
+// import { Stack, useRouter } from "expo-router";
+// import { StatusBar } from "expo-status-bar";
+// import { useEffect } from "react";
+// import { Platform, Text, View } from "react-native";
+import Purchases, { LOG_LEVEL } from "react-native-purchases";
+import RevenueCatUI from "react-native-purchases-ui";
+
+// // export default function Paywall() {
+// // 	const router = useRouter();
+
+// // 	useEffect(() => {
+// // 		Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+
+// // 		if (Platform.OS === "ios") {
+// // 			Purchases.configure({ apiKey: "revenuecat_project_apple_api_key" });
+// // 		} else if (Platform.OS === "android") {
+// // 			Purchases.configure({ apiKey: "revenuecat_project_google_api_key" });
+// // 		}
+
+// // 		const getCustomerInfo = async () => {
+// // 			const customerInfo = await Purchases.getCustomerInfo();
+// // 			console.log("customerInfo", customerInfo);
+// // 		};
+// // 	}, []);
+
+// // 	return (
+// // 		<View style={{ flex: 1 }}>
+// // 			<RevenueCatUI.Paywall
+// // 				onDismiss={() => {
+// // 					router.push("/(dashboard)");
+// // 				}}
+// // 			/>
+// // 		</View>
+// // 	);
+// // }
+
+// function PaywallScreen() {
+// 	const router = useRouter();
+
+// 	console.log("yoooo");
+
+// 	useEffect(() => {
+// 		Purchases.setLogLevel(LOG_LEVEL.VERBOSE);
+
+// 		if (Platform.OS === "ios") {
+// 			Purchases.configure({ apiKey: "revenuecat_project_apple_api_key" });
+// 		} else if (Platform.OS === "android") {
+// 			Purchases.configure({ apiKey: "revenuecat_project_google_api_key" });
+// 		}
+
+// 		const getCustomerInfo = async () => {
+// 			const customerInfo = await Purchases.getCustomerInfo();
+// 			console.log("customerInfo", customerInfo);
+// 		};
+// 	}, []);
+
+// 	return (
+// 		<View style={{ flex: 1 }}>
+// 			<RevenueCatUI.Paywall
+// 				onDismiss={() => {
+// 					router.push("/(dashboard)");
+// 				}}
+// 			/>
+// 		</View>
+// 	);
+// }
+
+// export default PaywallScreen;
+
+import { useRouter } from "expo-router";
+import React from "react";
 import { View } from "react-native";
 
-export default function Paywall() {
+const Paywall = () => {
+	const router = useRouter();
+
 	return (
-		<View style={{ flex: 1, backgroundColor: "#f5f5f5" }}>
-			<StatusBar style="dark" />
-			<Stack
-				screenOptions={{
-					headerShown: false,
-					headerStyle: {
-						backgroundColor: "#fff",
-					},
-					headerShadowVisible: false,
-					headerTitleStyle: {
-						fontWeight: "600",
-						fontSize: 18,
-					},
-					animation: "slide_from_right",
+		<View style={{ flex: 1 }}>
+			<RevenueCatUI.Paywall
+				onDismiss={() => {
+					router.push("/(dashboard)");
 				}}
 			/>
 		</View>
 	);
-}
+};
+
+export default Paywall;

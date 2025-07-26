@@ -6,7 +6,9 @@ import { authClient } from "@/lib/auth/auth-client";
 export default function DashboardLayout() {
 	const { data, isPending } = authClient.useSession();
 
-	if (!data && !isPending) {
+	console.log(data);
+
+	if (data && !isPending) {
 		return <Redirect href="/(intro)" />;
 	}
 
