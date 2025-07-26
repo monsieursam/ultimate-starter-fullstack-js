@@ -5,8 +5,12 @@ export const ServerRoute = createServerFileRoute(
 ).methods({
 	GET: ({ request }) => {
 		console.log(request);
+
+		return request;
 	},
 	POST: ({ request }) => {
 		console.log(request);
+
+		return request;
 	},
 });
