@@ -22,7 +22,9 @@ export default function RootLayout() {
 	});
 
 	useEffect(() => {
-		Purchases.configure({ apiKey: "appl_lJyjFbMjyblaHlwZjzHuiESsBwn" });
+		Purchases.configure({
+			apiKey: "appl_lJyjFbMjyblaHlwZjzHuiESsBwn",
+		});
 		// if (Platform.OS === 'ios') {
 		//    Purchases.configure({apiKey: <revenuecat_project_apple_api_key>});
 		// } else if (Platform.OS === 'android') {

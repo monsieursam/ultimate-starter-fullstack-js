@@ -1,4 +1,4 @@
-import { date, pgTable, text, uuid } from "drizzle-orm/pg-core";
+import { date, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { accounts, sessions, users, verifications } from "./auth-schema";
 
 export {
@@ -18,8 +18,18 @@ export const subscriptions = pgTable("subscriptions", {
 	revenueCatCustomerId: text("revenue_cat_customer_id")
 		.notNull()
 		.references(() => users.revenueCatCustomerId, { onDelete: "cascade" }),
-	isActive: text("is_active").default("false"),
-	expiresAt: date("expires_at"),
+	status: text("status").notNull(),
+	expiration_at: text("expiration_at").notNull(),
+	last_transaction_id: text("last_transaction_id").notNull(),
+	product_id: text("product_id").notNull(),
+});
+
+export const api_requests = pgTable("api_requests", {
+	id: uuid("id").primaryKey(),
+	userId: uuid("user_id")
+		.notNull()
+		.references(() => users.id),
+	timestamp: timestamp("timestamp").notNull(),
 });
 
 export const schema = {
@@ -33,3 +43,4 @@ export const schema = {
 };
 
 export type User = typeof users.$inferSelect;
+export type Subscription = typeof subscriptions.$inferSelect;

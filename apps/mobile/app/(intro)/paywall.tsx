@@ -68,11 +68,31 @@ import RevenueCatUI from "react-native-purchases-ui";
 // export default PaywallScreen;
 
 import { useRouter } from "expo-router";
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
+import { authClient } from "@/lib/auth/auth-client";
 
 const Paywall = () => {
 	const router = useRouter();
+	const { data } = authClient.useSession();
+
+	useEffect(() => {
+		Purchases.configure({
+			apiKey: "appl_lJyjFbMjyblaHlwZjzHuiESsBwn",
+			appUserID: data?.user?.id,
+		});
+		// if (Platform.OS === 'ios') {
+		//    Purchases.configure({apiKey: <revenuecat_project_apple_api_key>});
+		// } else if (Platform.OS === 'android') {
+		//    Purchases.configure({apiKey: <revenuecat_project_google_api_key>});
+		//   // OR: if building for Amazon, be sure to follow the installation instructions then:
+		//    Purchases.configure({ apiKey: <revenuecat_project_amazon_api_key>, useAmazon: true });
+		// }
+	}, [data]);
+
+	if (!data?.user?.id) {
+		return null;
+	}
 
 	return (
 		<View style={{ flex: 1 }}>
