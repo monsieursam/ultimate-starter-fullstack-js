@@ -27,6 +27,7 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
 			revenueCatCustomerId: {
 				type: "string",
 				required: false,
+				unique: true,
 			},
 		},
 	},

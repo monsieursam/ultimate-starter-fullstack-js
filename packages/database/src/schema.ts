@@ -24,13 +24,13 @@ export const subscriptions = pgTable("subscriptions", {
 	product_id: text("product_id").notNull(),
 });
 
-export const api_requests = pgTable("api_requests", {
-	id: uuid("id").primaryKey(),
-	userId: uuid("user_id")
-		.notNull()
-		.references(() => users.id),
-	timestamp: timestamp("timestamp").notNull(),
-});
+// export const api_requests = pgTable("api_requests", {
+// 	id: uuid("id").primaryKey(),
+// 	userId: text("user_id")
+// 		.notNull()
+// 		.references(() => users.id),
+// 	timestamp: timestamp("timestamp").notNull(),
+// });
 
 export const schema = {
 	accounts,
