@@ -12,7 +12,6 @@ import { createServerRootRoute } from '@tanstack/react-start/server'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { ServerRoute as ApiWebhooksRevenuecatServerRouteImport } from './routes/api/webhooks/revenuecat'
 import { ServerRoute as ApiOrpcSplatServerRouteImport } from './routes/api/orpc/$'
 import { ServerRoute as ApiAuthSplatServerRouteImport } from './routes/api/auth/$'
 
@@ -23,12 +22,6 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ApiWebhooksRevenuecatServerRoute =
-  ApiWebhooksRevenuecatServerRouteImport.update({
-    id: '/api/webhooks/revenuecat',
-    path: '/api/webhooks/revenuecat',
-    getParentRoute: () => rootServerRouteImport,
-  } as any)
 const ApiOrpcSplatServerRoute = ApiOrpcSplatServerRouteImport.update({
   id: '/api/orpc/$',
   path: '/api/orpc/$',
@@ -64,31 +57,27 @@ export interface RootRouteChildren {
 export interface FileServerRoutesByFullPath {
   '/api/auth/$': typeof ApiAuthSplatServerRoute
   '/api/orpc/$': typeof ApiOrpcSplatServerRoute
-  '/api/webhooks/revenuecat': typeof ApiWebhooksRevenuecatServerRoute
 }
 export interface FileServerRoutesByTo {
   '/api/auth/$': typeof ApiAuthSplatServerRoute
   '/api/orpc/$': typeof ApiOrpcSplatServerRoute
-  '/api/webhooks/revenuecat': typeof ApiWebhooksRevenuecatServerRoute
 }
 export interface FileServerRoutesById {
   __root__: typeof rootServerRouteImport
   '/api/auth/$': typeof ApiAuthSplatServerRoute
   '/api/orpc/$': typeof ApiOrpcSplatServerRoute
-  '/api/webhooks/revenuecat': typeof ApiWebhooksRevenuecatServerRoute
 }
 export interface FileServerRouteTypes {
   fileServerRoutesByFullPath: FileServerRoutesByFullPath
-  fullPaths: '/api/auth/$' | '/api/orpc/$' | '/api/webhooks/revenuecat'
+  fullPaths: '/api/auth/$' | '/api/orpc/$'
   fileServerRoutesByTo: FileServerRoutesByTo
-  to: '/api/auth/$' | '/api/orpc/$' | '/api/webhooks/revenuecat'
-  id: '__root__' | '/api/auth/$' | '/api/orpc/$' | '/api/webhooks/revenuecat'
+  to: '/api/auth/$' | '/api/orpc/$'
+  id: '__root__' | '/api/auth/$' | '/api/orpc/$'
   fileServerRoutesById: FileServerRoutesById
 }
 export interface RootServerRouteChildren {
   ApiAuthSplatServerRoute: typeof ApiAuthSplatServerRoute
   ApiOrpcSplatServerRoute: typeof ApiOrpcSplatServerRoute
-  ApiWebhooksRevenuecatServerRoute: typeof ApiWebhooksRevenuecatServerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -104,13 +93,6 @@ declare module '@tanstack/react-router' {
 }
 declare module '@tanstack/react-start/server' {
   interface ServerFileRoutesByPath {
-    '/api/webhooks/revenuecat': {
-      id: '/api/webhooks/revenuecat'
-      path: '/api/webhooks/revenuecat'
-      fullPath: '/api/webhooks/revenuecat'
-      preLoaderRoute: typeof ApiWebhooksRevenuecatServerRouteImport
-      parentRoute: typeof rootServerRouteImport
-    }
     '/api/orpc/$': {
       id: '/api/orpc/$'
       path: '/api/orpc/$'
@@ -137,7 +119,6 @@ export const routeTree = rootRouteImport
 const rootServerRouteChildren: RootServerRouteChildren = {
   ApiAuthSplatServerRoute: ApiAuthSplatServerRoute,
   ApiOrpcSplatServerRoute: ApiOrpcSplatServerRoute,
-  ApiWebhooksRevenuecatServerRoute: ApiWebhooksRevenuecatServerRoute,
 }
 export const serverRouteTree = rootServerRouteImport
   ._addFileChildren(rootServerRouteChildren)

@@ -6,6 +6,7 @@ import tsConfigPaths from "vite-tsconfig-paths";
 export default defineConfig({
 	server: {
 		port: 3000,
+		allowedHosts: ["4ab41472baad.ngrok-free.app"],
 	},
 	plugins: [
 		tsConfigPaths(),

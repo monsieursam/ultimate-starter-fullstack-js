@@ -13,18 +13,26 @@ import { authClient } from "@/lib/auth/auth-client";
 
 const MENU_ITEMS = [
 	{ id: "account", title: "Account Settings", icon: "person" as const },
-	{ id: "subscription", title: "Subscription", icon: "card" as const },
 	{
-		id: "notifications",
-		title: "Notifications",
-		icon: "notifications" as const,
+		id: "subscription",
+		title: "Subscription",
+		icon: "card" as const,
+		screen: "subscription",
 	},
-	{ id: "appearance", title: "Appearance", icon: "color-palette" as const },
+	// {
+	// 	id: "notifications",
+	// 	title: "Notifications",
+	// 	icon: "notifications" as const,
+	// },
+	// { id: "appearance", title: "Appearance", icon: "color-palette" as const },
 	{ id: "help", title: "Help & Support", icon: "help-circle" as const },
 	{ id: "about", title: "About", icon: "information-circle" as const },
 ];
 
 export default function ProfileScreen() {
+	const session = authClient.useSession();
+	const router = useRouter();
+
 	const handleSignOut = async () => {
 		// Implement sign out logic here
 		await authClient.signOut();
@@ -34,11 +42,13 @@ export default function ProfileScreen() {
 		<ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
 			<View style={styles.header}>
 				<Image
-					source={{ uri: "https://picsum.photos/200" }}
+					source={{
+						uri: session?.data?.user?.image || "https://picsum.photos/200",
+					}}
 					style={styles.avatar}
 				/>
-				<Text style={styles.name}>John Doe</Text>
-				<Text style={styles.email}>john.doe@example.com</Text>
+				<Text style={styles.name}>{session?.data?.user?.name}</Text>
+				<Text style={styles.email}>{session?.data?.user?.email}</Text>
 				<View style={styles.stats}>
 					<View style={styles.statItem}>
 						<Text style={styles.statNumber}>42</Text>
@@ -59,7 +69,13 @@ export default function ProfileScreen() {
 
 			<View style={styles.menuContainer}>
 				{MENU_ITEMS.map((item) => (
-					<TouchableOpacity key={item.id} style={styles.menuItem}>
+					<TouchableOpacity
+						key={item.id}
+						style={styles.menuItem}
+						onPress={() => {
+							router.push("/(dashboard)/(profile)/subscription");
+						}}
+					>
 						<View style={styles.menuItemLeft}>
 							<Ionicons name={item.icon} size={24} color="#333" />
 							<Text style={styles.menuItemText}>{item.title}</Text>
@@ -82,6 +98,7 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		paddingTop: 50,
 		backgroundColor: "#f5f5f5",
 	},
 	header: {

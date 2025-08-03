@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
+import * as FileSystem from "expo-file-system";
 import { Link } from "expo-router";
+import * as Sharing from "expo-sharing";
 import React, { useState } from "react";
-import * as Sharing from 'expo-sharing';
-import * as FileSystem from 'expo-file-system';
 import {
+	Alert,
 	Dimensions,
 	Image,
 	ScrollView,
@@ -12,7 +13,6 @@ import {
 	TextInput,
 	TouchableOpacity,
 	View,
-	Alert,
 } from "react-native";
 
 const { width } = Dimensions.get("window");
@@ -32,28 +32,28 @@ export default function DashboardScreen() {
 	};
 
 	// Function to save image locally
-	const handleSaveImage = async (imageUrl) => {
+	const handleSaveImage = async (imageUrl: string) => {
 		try {
 			const filename = `${FileSystem.documentDirectory}image-${Date.now()}.jpg`;
 			await FileSystem.downloadAsync(imageUrl, filename);
-			Alert.alert('Success', 'Image saved successfully!');
+			Alert.alert("Success", "Image saved successfully!");
 		} catch (error) {
-			Alert.alert('Error', 'Failed to save image');
+			Alert.alert("Error", "Failed to save image");
 			console.error(error);
 		}
 	};
 
 	// Function to share image
-	const handleShareImage = async (imageUrl) => {
+	const handleShareImage = async (imageUrl: string) => {
 		try {
 			const isAvailable = await Sharing.isAvailableAsync();
 			if (!isAvailable) {
-				Alert.alert('Error', 'Sharing is not available on this device');
+				Alert.alert("Error", "Sharing is not available on this device");
 				return;
 			}
 			await Sharing.shareAsync(imageUrl);
 		} catch (error) {
-			Alert.alert('Error', 'Failed to share image');
+			Alert.alert("Error", "Failed to share image");
 			console.error(error);
 		}
 	};
@@ -96,7 +96,7 @@ export default function DashboardScreen() {
 							<Image source={{ uri: image.url }} style={styles.image} />
 							<View style={styles.imageOverlay}>
 								<View style={styles.actionButtons}>
-									<Link
+									{/* <Link
 										href={{
 											pathname: "/edit",
 											params: { imageId: image.id },
@@ -107,15 +107,15 @@ export default function DashboardScreen() {
 											<Ionicons name="create-outline" size={24} color="#fff" />
 											<Text style={styles.actionButtonText}>Edit</Text>
 										</TouchableOpacity>
-									</Link>
-									<TouchableOpacity 
+									</Link> */}
+									<TouchableOpacity
 										style={styles.actionButton}
 										onPress={() => handleSaveImage(image.url)}
 									>
 										<Ionicons name="download-outline" size={24} color="#fff" />
 										<Text style={styles.actionButtonText}>Save</Text>
 									</TouchableOpacity>
-									<TouchableOpacity 
+									<TouchableOpacity
 										style={styles.actionButton}
 										onPress={() => handleShareImage(image.url)}
 									>

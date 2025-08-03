@@ -74,13 +74,31 @@ import { authClient } from "@/lib/auth/auth-client";
 
 const Paywall = () => {
 	const router = useRouter();
-	const { data } = authClient.useSession();
+	const session = authClient.useSession();
 
 	useEffect(() => {
 		Purchases.configure({
 			apiKey: "appl_lJyjFbMjyblaHlwZjzHuiESsBwn",
-			appUserID: data?.user?.id,
+			appUserID: session.data?.user?.id,
 		});
+
+		const getCustomerInfo = async () => {
+			const customerInfo = await Purchases.getCustomerInfo();
+
+			console.log("paywall");
+			console.log(customerInfo);
+			const { isActive } =
+				customerInfo.subscriptionsByProductIdentifier["imgen_monthly"];
+
+			console.log(isActive);
+
+			if (isActive) {
+				router.push("/(dashboard)");
+			}
+		};
+
+		getCustomerInfo();
+
 		// if (Platform.OS === 'ios') {
 		//    Purchases.configure({apiKey: <revenuecat_project_apple_api_key>});
 		// } else if (Platform.OS === 'android') {
@@ -88,11 +106,7 @@ const Paywall = () => {
 		//   // OR: if building for Amazon, be sure to follow the installation instructions then:
 		//    Purchases.configure({ apiKey: <revenuecat_project_amazon_api_key>, useAmazon: true });
 		// }
-	}, [data]);
-
-	if (!data?.user?.id) {
-		return null;
-	}
+	}, [session.data, router]);
 
 	return (
 		<View style={{ flex: 1 }}>

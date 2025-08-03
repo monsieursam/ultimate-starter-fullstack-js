@@ -22,13 +22,4 @@ export const auth: ReturnType<typeof betterAuth> = betterAuth({
 			appBundleIdentifier: process.env.APPLE_APP_BUNDLE_IDENTIFIER as string,
 		},
 	},
-	user: {
-		additionalFields: {
-			revenueCatCustomerId: {
-				type: "string",
-				required: false,
-				unique: true,
-			},
-		},
-	},
 });
